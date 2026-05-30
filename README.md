@@ -32,7 +32,7 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 | (TLS Terminated)
 |
 [ Public Internet ]
-
+```
 
 ---
 
@@ -60,6 +60,9 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 │   ├── variables.tf        # Input variables
 │   └── outputs.tf          # Core resource output exports
 └── .gitignore              # Repository perimeter shield blocking .tfstate & secrets
+```
+---
+
 🛠️ Local Setup & Deployment
 Prerequisites
 Windows Command Prompt (cmd.exe) or Linux/macOS terminal
@@ -88,6 +91,9 @@ Bash
 git add .
 git commit -m "feat: deploy containerized web application to cloud fabric"
 git push origin main
+
+---
+
 📡 Live Production Verification
 Once the automated pipeline runs green, verify the endpoints:
 
@@ -105,3 +111,4 @@ Once saved, use your Command Prompt to push the documentation live to your profi
 git add README.md
 git commit -m "docs: implement professional production-grade repository readme"
 git push origin main
+```
