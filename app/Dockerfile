@@ -1,23 +1,24 @@
-FROM node:20-alpine AS builder
-WORKDIR /usr/src/app
+From python:3.11-slim AS builder
+WORKDIR /app
 
-COPY package*.json ./
+Run python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 
-RUN npm install
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+FROM python:3.11-slim AS runner
+WORKDIR /app
 
-FROM node:20-alpine AS runner
-WORKDIR /usr/src/app
+COPY --from=builder /opt/venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+ENV PYTHONUNBUFFERED=1
 
-ENV NODE_ENV=production
-ENV PORT=80
+COPY  main.py .
 
-COPY --from=builder /usr/src/app/package*.json ./
-COPY --from=builder /usr/src/app/src ./src
-
-USER node
+RUN useradd -u 1001 appuser && chown -R appuser /app
+USER appuser
 
 EXPOSE 80
 
-CMD ["node", "src/index.js"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]

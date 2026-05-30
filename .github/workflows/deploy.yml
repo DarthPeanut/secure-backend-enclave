@@ -68,7 +68,7 @@ jobs:
           echo "ACR_SERVER=$(terraform output -raw container_registry_server 2>/dev/null || az acr list --query '[0].loginServer' -o tsv)" >> $GITHUB_ENV
           echo "ACA_NAME=$(terraform output -raw container_app_name 2>/dev/null || echo 'secure-service')" >> $GITHUB_ENV
           echo "RG_NAME=$(terraform output -raw resource_group_name 2>/dev/null || echo 'secure-enclave-rg')" >> $GITHUB_ENV
-
+          echo "APP_URL=$(terraform output -raw container_app_url 2>/dev/null)" >> $GITHUB_ENV
       
       - name: Build & Push Hardened Docker Image via ACR Task
         run: |
@@ -81,3 +81,20 @@ jobs:
             --name ${{ env.ACA_NAME }} \
             --resource-group ${{ env.RG_NAME }} \
             --image ${{ env.ACR_SERVER }}/secure-api:${{ github.sha }}
+
+      - name: Live Endpoint Smoke Test
+        run: |
+          echo "Target Endpoint: https://${{ env.APP_URL }}"
+          
+          # Give Azure Container Apps 15 seconds to finish rolling out the fresh container image revision
+          sleep 15
+          
+          # Hit the API health route and check for a 200 HTTP response code
+          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://${{ env.APP_URL }}/api/v1/health)
+          
+          if [ "$STATUS_CODE" -ne 200 ]; then
+            echo "CRITICAL: Live endpoint validation failed with status code $STATUS_CODE"
+            exit 1
+          fi
+          
+          echo "SUCCESS: Live endpoint verification passed with status code 200 OK!"
