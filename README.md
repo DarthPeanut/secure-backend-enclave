@@ -4,38 +4,7 @@ Markdown
 An enterprise-grade, highly secure, automated FastAPI microservice deployed onto the **Azure Cloud Platform** using **Terraform** for Infrastructure as Code (IaC) and **GitHub Actions** for CI/CD. 
 
 This repository demonstrates modern DevSecOps practices, featuring OIDC credential-less authentication, strict non-root container hardening, unprivileged network binding, and automated perimeter defenses.
-
 ---
-
-## 🏗️ Architectural Topology
-
-+---------------------------------------------------------------------------------+
-|                                 AZURE CLOUD                                     |
-|                                                                                 |
-|  +------------------------+      +-------------------------------------------+  |
-|  | Azure Container        |      | Azure Container Apps (ACA)                |  |
-|  | Registry (ACR)         |      | Managed Environment                       |  |
-|  |                        |      |                                           |  |
-|  | [Secure API Image] ----+----->|  +-------------------------------------+  |  |
-|  +------------------------+      |  | Isolated Container Replica          |  |  |
-|                                  |  |                                     |  |  |
-|                                  |  |  - Non-privileged User: appuser     |  |  |
-|  +------------------------+      |  |  - Inbound Target Port: 8080        |  |  |
-|  | Log Analytics          |      |  |  - Framework: FastAPI / Uvicorn     |  |  |
-|  | Workspace              |      |  +-------------------------------------+  |  |
-|  |                        |      |                       |                   |  |
-|  |  - System Logs (KQL)  |<-----+-----------------------+                   |  |
-|  +------------------------+      +-----------------------+-------------------+  |
-|                                                          ^                      |
-+----------------------------------------------------------|----------------------+
-| Inbound HTTPS
-| (TLS Terminated)
-|
-[ Public Internet ]
-
-
----
-
 ## 🔒 Security & Engineering Standards
 
 * **Infrastructure as Code (IaC):** 100% of the cloud fabric—including resource groups, container registries, and log workspaces—is provisioned using **Terraform** to prevent configuration drift.
@@ -60,6 +29,7 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 │   ├── variables.tf        # Input variables
 │   └── outputs.tf          # Core resource output exports
 └── .gitignore              # Repository perimeter shield blocking .tfstate & secrets
+```text
 🛠️ Local Setup & Deployment
 Prerequisites
 Windows Command Prompt (cmd.exe) or Linux/macOS terminal
