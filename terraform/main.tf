@@ -92,7 +92,7 @@ resource "azurerm_container_app" "app" {
     
     ingress {
         allow_insecure_connections = false
-        target_port = 80
+        target_port = 8080
         external_enabled = true
         traffic_weight {
             percentage = 100
