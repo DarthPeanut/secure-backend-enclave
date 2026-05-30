@@ -44,7 +44,7 @@ resource "azurerm_container_registry" "acr" {
     location = azurerm_resource_group.rg.location
     #Have to use basic because I dont want to pay for it 
     sku = var.enable_strict_isolation ? "Premium" : "Basic"
-    admin_enable = true
+    admin_enabled = true
 }
 #Free Tier
 resource "azurerm_log_analytics_workspace" "law"{
