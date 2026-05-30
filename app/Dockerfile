@@ -1,7 +1,7 @@
 From python:3.11-slim AS builder
 WORKDIR /app
 
-Run python -m venv /opt/venv
+RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 COPY requirements.txt .
@@ -16,7 +16,9 @@ ENV PYTHONUNBUFFERED=1
 
 COPY  main.py /app/main.py
 
-RUN useradd -u 1001 appuser && chown -R appuser /app
+RUN useradd -u 1001 appuser && \
+    chown -R appuser:appuser /app /opt/venv
+    
 USER appuser
 
 EXPOSE 80
