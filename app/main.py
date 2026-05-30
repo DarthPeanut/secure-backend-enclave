@@ -12,7 +12,7 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"status": "healthy", "engine": "FastAPI", "runtime": "Azure Container Apps"}
+    return {"status": "healthy", "engine": "FastAPI", "deployment": "Gitops Single Revision Clean Run"}
 
 @app.get("/api/v1/health")
 def read_health():
