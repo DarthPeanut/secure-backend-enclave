@@ -99,3 +99,23 @@ resource "azurerm_container_app" "app" {
         }
     }
 }
+
+output "resource_group_name" {
+    value = azurerm_resource_group.rg.name
+    description = "Core dployment rg name"
+}
+
+output "container_registry_name" {
+    value = azurerm_container_registry.acr.name
+    description = "The name of the container registry"
+}
+
+output "container_registry_server" {
+    value = azurerm_container_registry.acr.login_server
+    description = "The login server of the container registry"
+}
+
+output "container_app_name" {
+    value = azurerm_container_app.app.name
+    description = "The name of the container app"
+}
