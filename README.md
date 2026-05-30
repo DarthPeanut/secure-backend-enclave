@@ -1,3 +1,4 @@
+Markdown
 # Secure Cloud-Native Web Application & GitOps Pipeline
 
 An enterprise-grade, highly secure, automated FastAPI microservice deployed onto the **Azure Cloud Platform** using **Terraform** for Infrastructure as Code (IaC) and **GitHub Actions** for CI/CD. 
@@ -6,7 +7,8 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 
 ---
 
-## Architectural Topology
+## 🏗️ Architectural Topology
+
 +---------------------------------------------------------------------------------+
 |                                 AZURE CLOUD                                     |
 |                                                                                 |
@@ -34,7 +36,7 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 
 ---
 
-## Security & Engineering Standards
+## 🔒 Security & Engineering Standards
 
 * **Infrastructure as Code (IaC):** 100% of the cloud fabric—including resource groups, container registries, and log workspaces—is provisioned using **Terraform** to prevent configuration drift.
 * **OIDC Federated Authentication:** The CI/CD pipeline establishes a short-lived cryptographic trust handshake between GitHub and Azure Active Directory via **OpenID Connect (OIDC)**, completely removing hardcoded passwords or service principal secrets from the repository.
@@ -44,7 +46,7 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 
 ---
 
-## Repository Structure
+## 🚀 Repository Structure
 
 ```text
 ├── .github/workflows/
@@ -58,9 +60,7 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 │   ├── variables.tf        # Input variables
 │   └── outputs.tf          # Core resource output exports
 └── .gitignore              # Repository perimeter shield blocking .tfstate & secrets
-
-
-Local Setup & Deployment
+🛠️ Local Setup & Deployment
 Prerequisites
 Windows Command Prompt (cmd.exe) or Linux/macOS terminal
 
@@ -88,8 +88,7 @@ Bash
 git add .
 git commit -m "feat: deploy containerized web application to cloud fabric"
 git push origin main
-
-Live Production Verification
+📡 Live Production Verification
 Once the automated pipeline runs green, verify the endpoints:
 
 API Documentation Panel: https://<your-container-app-url>/docs
