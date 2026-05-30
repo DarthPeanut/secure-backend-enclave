@@ -29,7 +29,7 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 │   ├── variables.tf        # Input variables
 │   └── outputs.tf          # Core resource output exports
 └── .gitignore              # Repository perimeter shield blocking .tfstate & secrets
-```text
+text```
 🛠️ Local Setup & Deployment
 Prerequisites
 Windows Command Prompt (cmd.exe) or Linux/macOS terminal
