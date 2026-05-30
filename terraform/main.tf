@@ -119,7 +119,3 @@ output "container_app_name" {
     value = azurerm_container_app.app.name
     description = "The name of the container app"
 }
-
-resource "azurerm_location_mapping" "rg_location" {
-  location = var.location
-}
