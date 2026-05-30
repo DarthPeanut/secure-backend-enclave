@@ -13,10 +13,10 @@ COPY main.py .
 RUN useradd -u 1001 appuser && chown -R appuser:appuser /app
 USER appuser
 
-EXPOSE 80
+EXPOSE 8080
 
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
