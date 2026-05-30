@@ -54,6 +54,7 @@ jobs:
           cd terraform
           terraform init -backend=false
           terraform workspace select -or-create dev
+          terraform import -var="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" azurerm_resource_group.rg /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/secure-enclave-rg || echo "Resource already exists, skipping import.""
           terraform apply -auto-approve
           
           echo "ACR_NAME=$(terraform output -raw container_registry_name 2>/dev/null || az acr list --query '[0].name' -o tsv)" >> $GITHUB_ENV
