@@ -92,6 +92,8 @@ These variables are declared directly inside the `.github/workflows/deploy.yml` 
 * **`ACA_NAME`:** The target Azure Container App name (`secure-service`)
 * **`RG_NAME`:** The hosting Azure Resource Group (`secure-enclave-rg`)
 
+Because this pipeline uses **OpenID Connect (OIDC)** for secure, credential-less authentication, you must configure your GitHub repository to trust your Azure tenant.
+
 ### How to set up Azure OIDC Trust:
 1. Create an App Registration in the **Azure Portal**.
 2. Under **Certificates & secrets**, add a **Federated credential**.
