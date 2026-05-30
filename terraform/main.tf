@@ -62,9 +62,13 @@ resource "azurerm_container_app_environment" "env" {
     log_analytics_workspace_id = azurerm_log_analytics_workspace.law.id
 
     infrastructure_subnet_id = var.enable_strict_isolation ? azurerm_subnet.compute_subnet[0].id : null
-    internal_load_balancer_enabled = var.enable_strict_isolation ? true : false
+    dynamic "internal_load_balancer_enabled" {
+    for_each = var.enable_strict_isolation ? [true] : []
+    content {
+      value = true
+    }
+  }
 }
-
 resource "azurerm_container_app" "app" {
     name = "secure-service"
     container_app_environment_id = azurerm_container_app_environment.env.id
