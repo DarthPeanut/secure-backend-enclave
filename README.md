@@ -74,23 +74,28 @@ Terraform CLI installed
 1. Initialize the Infrastructure
 Navigate to the terraform directory and provision the secure azure infrastructure:
 
-Bash
+```cmd
 cd terraform
 terraform init
 terraform plan
 terraform apply -auto-approve
+```
+
 2. Verify Repository Security Perimeter
 Run the built-in Git diagnostic engine to confirm that your sensitive tracking files are successfully blocked from leaking to public remote servers:
 
-Bash
+```cmd
 git check-ignore -v terraform/terraform.tfstate
+```
+
 3. CI/CD GitOps Trigger
 To trigger a fresh image compilation and a rolling revision update inside Azure Container Apps, stage and push the source code up to your repository:
 
-Bash
+```cmd
 git add .
 git commit -m "feat: deploy containerized web application to cloud fabric"
 git push origin main
+```
 
 ---
 
