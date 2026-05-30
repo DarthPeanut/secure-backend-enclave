@@ -64,13 +64,12 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 ---
 
  Local Setup & Deployment
-Prerequisites
-Windows Command Prompt (cmd.exe) or Linux/macOS terminal
-
-Azure CLI installed
-
-Terraform CLI installed
-
+### Prerequisites
+* Windows Command Prompt (`cmd.exe`) or a Linux/macOS terminal shell.
+* **Azure CLI:** Follow the official Microsoft installation guide to set up the CLI on your OS:  
+  👉 [Install the Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
+* **Terraform CLI:** Download the binary or package manager setup directly from HashiCorp:  
+  👉 [Download the Terraform CLI](https://developer.hashicorp.com/terraform/downloads)
 ---
 
 ## GitHub Actions Secrets Configuration
