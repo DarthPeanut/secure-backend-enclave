@@ -62,6 +62,8 @@ resource "azurerm_container_app_environment" "env" {
     log_analytics_workspace_id = azurerm_log_analytics_workspace.law.id
 
     infrastructure_subnet_id = var.enable_strict_isolation ? azurerm_subnet.compute_subnet[0].id : null
+
+    infrastructure_subnet_id = var.enable_strict_isolation ? azurerm_subnet.compute_subnet[0].id : null
     internal_load_balancer_enabled = var.enable_strict_isolation ? true : false
 }
 
@@ -118,4 +120,8 @@ output "container_registry_server" {
 output "container_app_name" {
     value = azurerm_container_app.app.name
     description = "The name of the container app"
+}
+
+resource "azurerm_location_mapping" "rg_location" {
+  location = var.location
 }

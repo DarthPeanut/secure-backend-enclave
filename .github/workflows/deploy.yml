@@ -53,7 +53,7 @@ jobs:
         run: |
           cd terraform
           terraform init -backend=false
-          terraform env select dev || terraform env new dev
+          terraform workspace select -or-create dev
           terraform apply -auto-approve
           
           echo "ACR_NAME=$(terraform output -raw container_registry_name 2>/dev/null || az acr list --query '[0].name' -o tsv)" >> $GITHUB_ENV
