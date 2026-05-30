@@ -49,7 +49,7 @@ jobs:
           terraform_version: 1.7.0
 
      
-      # Initialize, import the stray resource group, and execute deployments
+      
       - name: Terraform Orchestration
         env:
           TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
@@ -81,15 +81,16 @@ jobs:
             --name ${{ env.ACA_NAME }} \
             --resource-group ${{ env.RG_NAME }} \
             --image ${{ env.ACR_SERVER }}/secure-api:${{ github.sha }}
+            --target-port 8080
 
       - name: Live Endpoint Smoke Test
         run: |
           echo "Target Endpoint: https://${{ env.APP_URL }}"
           
-          # Give Azure Container Apps 15 seconds to finish rolling out the fresh container image revision
+          
           sleep 15
           
-          # Hit the API health route and check for a 200 HTTP response code
+          
           STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://${{ env.APP_URL }}/api/v1/health)
           
           if [ "$STATUS_CODE" -ne 200 ]; then

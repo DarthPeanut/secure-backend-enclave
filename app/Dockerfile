@@ -3,9 +3,8 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir --target=/usr/local/lib/python3.11/site-packages -r requirements.txt
+    pip install --no-cache-dir -r requirements.txt
 
 COPY main.py .
 
@@ -13,7 +12,4 @@ EXPOSE 8080
 
 ENV PYTHONUNBUFFERED=1
 
-ENV PYTHONPATH=/usr/local/lib/python3.11/site-packages
-ENV PATH="/usr/local/lib/python3.11/site-packages/bin:$PATH"
-
-CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
