@@ -2,6 +2,10 @@ FROM python:3.11-slim
 WORKDIR /app
 
 
+ARG CACHE_BUSTER=1
+ENV DYNAMIC_BUILD_REF=$CACHE_BUSTER
+
+
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir fastapi uvicorn==0.30.1
 

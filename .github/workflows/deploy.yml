@@ -72,8 +72,7 @@ jobs:
       
       - name: Build & Push Hardened Docker Image via ACR Task
         run: |
-          az acr build --registry ${{ env.ACR_NAME }} --no-cache --image secure-api:${{ github.sha }} ./app
-                                                      
+          az acr build --registry ${{ env.ACR_NAME }} --image secure-api:${{ github.sha }} ./app                                          
       
       - name: Deploy Container Revision to Cloud Fabric
         run: az containerapp update --name ${{ env.ACA_NAME }} --resource-group ${{ env.RG_NAME }} --container-name api --image ${{ env.ACR_SERVER }}/secure-api:${{ github.sha }}
