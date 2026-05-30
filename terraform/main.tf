@@ -83,7 +83,7 @@ resource "azurerm_container_app" "app" {
     template {
         container {
             name = "api"
-            image = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest
+            image = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
             cpu = "0.25
             memory = "0.5Gi"
         }

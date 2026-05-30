@@ -16,7 +16,7 @@ variable "environment" {
     description = "The environment for the resources"
 }
 
-variable "enable strict_isolation" {
+variable "enable_strict_isolation" {
     type = bool
     default = false
     description = "Toggle TRUE for cleared environments (VNETS, WAF, Private Links)"
