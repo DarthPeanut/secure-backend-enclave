@@ -1,0 +1,10 @@
+{
+    "name" : "secure-enclave-api",
+    "version": "1.0.0",
+    "description": "Hardened misroservice running in isolated environment",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "node src/index.js"
+    },
+    "dependencies": {}
+}
