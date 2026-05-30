@@ -60,6 +60,7 @@ jobs:
           
           terraform import azurerm_resource_group.rg /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/secure-enclave-rg || echo "Resource already tracked or import skipped"
           terraform import azurerm_log_analytics_workspace.law /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/secure-enclave-rg/providers/Microsoft.OperationalInsights/workspaces/platform-logs || echo "Log analytics workspace already there, skipping."
+          terraform import azurerm_container_app_environment.env /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/secure-enclave-rg/providers/Microsoft.App/managedEnvironments/enclave-kube-fabric || echo "Container app environment already there, skipping."
           terraform apply -auto-approve
           
           echo "ACR_NAME=$(terraform output -raw container_registry_name 2>/dev/null || az acr list --query '[0].name' -o tsv)" >> $GITHUB_ENV
