@@ -17,7 +17,6 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 
 ## 🚀 Repository Structure
 
-```text
 ├── .github/workflows/
 │   └── deploy.yml          # GitHub Actions CI/CD Pipeline utilizing OIDC
 ├── app/
@@ -29,7 +28,7 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 │   ├── variables.tf        # Input variables
 │   └── outputs.tf          # Core resource output exports
 └── .gitignore              # Repository perimeter shield blocking .tfstate & secrets
-text```
+
 🛠️ Local Setup & Deployment
 Prerequisites
 Windows Command Prompt (cmd.exe) or Linux/macOS terminal
