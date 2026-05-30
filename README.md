@@ -72,20 +72,25 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
   👉 [Download the Terraform CLI](https://developer.hashicorp.com/terraform/downloads)
 ---
 
-## GitHub Actions Secrets Configuration
+## Pipeline Configuration & Environment Settings
 
-Because this pipeline uses **OpenID Connect (OIDC)** for secure, credential-less authentication, you must configure your GitHub repository to trust your Azure tenant. 
+To replicate this pipeline, the following credentials must be mapped into your GitHub Repository **Settings -> Secrets and variables -> Actions**:
 
-Before running the workflow, navigate to your GitHub Repository **Settings -> Secrets and variables -> Actions** and populate the following **Repository Secrets**:
+### 1. Repository Secrets (Secure Authentication)
+These are short-lived cryptographic tokens handled securely via OpenID Connect (OIDC):
 
 | Secret Name | Description / Source |
 | :--- | :--- |
 | `AZURE_CLIENT_ID` | The Application (client) ID of your Azure AD App Registration. |
 | `AZURE_TENANT_ID` | The Directory (tenant) ID of your Azure Active Directory instance. |
 | `AZURE_SUBSCRIPTION_ID` | The explicit Azure Subscription ID where your resources are hosted. |
-| `ACR_NAME` | The prefix name of your Azure Container Registry (e.g., `enclaveacr1h4eja`). |
-| `ACA_NAME` | The exact name of your Azure Container App (`secure-service`). |
-| `RG_NAME` | The target Azure Resource Group name (`secure-enclave-rg`). |
+
+### 2. Workflow Environment Variables (Target Architecture)
+These variables are declared directly inside the `.github/workflows/deploy.yml` file as text strings to target your specific Azure resources:
+
+* **`ACR_NAME`:** The unique name of your Azure Container Registry (e.g., `enclaveacr1h4eja`)
+* **`ACA_NAME`:** The target Azure Container App name (`secure-service`)
+* **`RG_NAME`:** The hosting Azure Resource Group (`secure-enclave-rg`)
 
 ### How to set up Azure OIDC Trust:
 1. Create an App Registration in the **Azure Portal**.
