@@ -76,8 +76,9 @@ jobs:
 
       
       - name: Deploy Container Revision to Cloud Fabric
-        run: az containerapp update --name ${{ env.ACA_NAME }} --resource-group ${{ env.RG_NAME }} --image ${{ env.ACR_SERVER }}/secure-api:${{ github.sha }} --target-port 8080
+        run: az containerapp update --name ${{ env.ACA_NAME }} --resource-group ${{ env.RG_NAME }} --image ${{ env.ACR_SERVER }}/secure-api:${{ github.sha }} --port 8080
 
+        
       - name: Live Endpoint Smoke Test
         run: |
           echo "Target Endpoint: https://${{ env.APP_URL }}"
