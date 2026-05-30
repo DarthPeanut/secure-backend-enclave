@@ -13,7 +13,7 @@ WORKDIR /usr/src/app
 ENV NODE_ENV=production
 ENV PORT=80
 
-COPY --from=builder /usr/src/app/package.json ./
+COPY --from=builder /usr/src/app/package*.json ./
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY --from=builder /usr/src/app/src ./src
 
