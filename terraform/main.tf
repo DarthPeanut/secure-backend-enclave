@@ -32,7 +32,7 @@ resource "azurerm_subnet" "compute_subnet" {
         name = "containerapps-delegation"
         service_delegation { 
             name = "Microsoft.App/environments"
-            actions = ["Microsoft.Network/virtualNetworks/subnets/action", "Microsoft.Network/virtualNetworks/subnets/preparedNetworkPolicies/action"]
+            actions = ["Microsoft.Network/virtualNetworks/subnets/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
 
         }
     }
@@ -52,7 +52,7 @@ resource "azurerm_log_analytics_workspace" "law"{
     resource_group_name = azurerm_resource_group.rg.name
     location = azurerm_resource_group.rg.location
     sku = "PerGB2018"
-    retain_in_days = 30
+    retention_in_days = 30
 }
 
 resource "azurerm_container_app_environment" "env" {
