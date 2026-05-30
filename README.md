@@ -6,7 +6,7 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 
 ---
 
-## 🏗️ Architectural Topology
+## Architectural Topology
 
 ```text
 +---------------------------------------------------------------------------------+
@@ -36,7 +36,7 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 
 ---
 
-## 🔒 Security & Engineering Standards
+## Security & Engineering Standards
 
 * **Infrastructure as Code (IaC):** 100% of the cloud fabric—including resource groups, container registries, and log workspaces—is provisioned using **Terraform** to prevent configuration drift.
 * **OIDC Federated Authentication:** The CI/CD pipeline establishes a short-lived cryptographic trust handshake between GitHub and Azure Active Directory via **OpenID Connect (OIDC)**, completely removing hardcoded passwords or service principal secrets from the repository.
@@ -46,7 +46,7 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 
 ---
 
-## 🚀 Repository Structure
+## Repository Structure
 
 ```text
 ├── .github/workflows/
@@ -63,13 +63,38 @@ This repository demonstrates modern DevSecOps practices, featuring OIDC credenti
 ```
 ---
 
-🛠️ Local Setup & Deployment
+ Local Setup & Deployment
 Prerequisites
 Windows Command Prompt (cmd.exe) or Linux/macOS terminal
 
 Azure CLI installed
 
 Terraform CLI installed
+
+---
+
+## GitHub Actions Secrets Configuration
+
+Because this pipeline uses **OpenID Connect (OIDC)** for secure, credential-less authentication, you must configure your GitHub repository to trust your Azure tenant. 
+
+Before running the workflow, navigate to your GitHub Repository **Settings -> Secrets and variables -> Actions** and populate the following **Repository Secrets**:
+
+| Secret Name | Description / Source |
+| :--- | :--- |
+| `AZURE_CLIENT_ID` | The Application (client) ID of your Azure AD App Registration. |
+| `AZURE_TENANT_ID` | The Directory (tenant) ID of your Azure Active Directory instance. |
+| `AZURE_SUBSCRIPTION_ID` | The explicit Azure Subscription ID where your resources are hosted. |
+| `ACR_NAME` | The prefix name of your Azure Container Registry (e.g., `enclaveacr1h4eja`). |
+| `ACA_NAME` | The exact name of your Azure Container App (`secure-service`). |
+| `RG_NAME` | The target Azure Resource Group name (`secure-enclave-rg`). |
+
+### How to set up Azure OIDC Trust:
+1. Create an App Registration in the **Azure Portal**.
+2. Under **Certificates & secrets**, add a **Federated credential**.
+3. Set the credential scenario to **GitHub Actions deployment**.
+4. Input your GitHub Organization/Username, Repository name, and restrict it to your `main` branch.
+
+---
 
 1. Initialize the Infrastructure
 Navigate to the terraform directory and provision the secure azure infrastructure:
@@ -99,7 +124,7 @@ git push origin main
 
 ---
 
-📡 Live Production Verification
+ Live Production Verification
 Once the automated pipeline runs green, verify the endpoints:
 
 API Documentation Panel: https://<your-container-app-url>/docs
